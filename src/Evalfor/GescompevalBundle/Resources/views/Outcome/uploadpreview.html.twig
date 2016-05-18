@@ -1,0 +1,107 @@
+{% extends 'EvalforGescompevalBundle::layout.html.twig' %}
+
+{% block title %}
+{% endblock %}
+
+{% block contenido %}
+
+	{% block ajax %}
+	{% endblock %}
+
+	<div class="panel panel-default">
+		<div class="panel-heading">
+	    	<h3 class="panel-title">
+				{% block skill_title %}
+				{% if report is empty %}
+					{{ 'outcome.upload.previewupload'|trans({}, 'EvalforGescompevalBundle') }}
+				{% endif %}
+				
+				{% if report is not empty %}
+					{{ 'outcome.upload.title'|trans({}, 'EvalforGescompevalBundle') }}
+				{% endif %}
+					
+				{% endblock %}
+	    	</h3>
+	    </div>
+	</div>
+
+
+	<div id="table">
+		
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>{{ 'list.code'|trans({}, 'EvalforGescompevalBundle') }}</th>
+					<th>{{ 'list.shortdescription'|trans({}, 'EvalforGescompevalBundle') }}</th>
+					<th>{{ 'list.longdescription'|trans({}, 'EvalforGescompevalBundle') }}</th>
+					<th>{{ 'institution.institution'|trans({}, 'EvalforGescompevalBundle') }}</th>
+				</tr>
+			</thead>
+			<tbody>
+			{% for skill in skills %}
+				<tr>
+					<td>{{skill.code}}</td>
+					<td>{{skill.shortdescription}}</td>
+					<td>{{skill.longdescription}}</td>
+					<td>{{skill.institution}}</td>
+				</tr>
+			{% endfor %}
+
+			</tbody>
+		</table>
+	</div>
+	
+	{# if there is any invalid data, it or they will be shown in a table #}
+	{% if errors is not empty %}
+	
+		<div class="panel panel-default">
+			<div class="panel-heading">
+		    	<h3 class="panel-title text-danger">
+					{% block skill_errors %}
+						{{ 'skill.correction'|trans({}, 'EvalforGescompevalBundle') }}
+					{% endblock %}
+		    	</h3>
+		    </div>
+		</div>
+	
+	
+		<div id="table">
+			
+			<table class="table table-striped">
+				<thead>
+					<tr class="warning">
+						<th>{{ 'list.code'|trans({}, 'EvalforGescompevalBundle') }}</th>
+						<th>{{ 'list.shortdescription'|trans({}, 'EvalforGescompevalBundle') }}</th>
+						<th>{{ 'list.longdescription'|trans({}, 'EvalforGescompevalBundle') }}</th>
+						<th>{{ 'institution.institution'|trans({}, 'EvalforGescompevalBundle') }}</th>
+						<th>{{ 'skill.description'|trans({}, 'EvalforGescompevalBundle') }}</th>
+					</tr>
+				</thead>
+				<tbody>
+				{% for error in errors %}
+					<tr class="danger">
+						<td>{{error.code}}</td>
+						<td>{{error.shortdescription}}</td>
+						<td>{{error.longdescription}}</td>
+						<td>{{error.institution}}</td>
+						<td><b>{{error.description}}</b></td>
+					</tr>
+				{% endfor %}
+	
+				</tbody>
+			</table>
+		</div>
+	{% endif %}
+	
+	
+	{% if report is empty %}
+		<div class="text-center">
+			<button class="btn btn-default" onclick="location.href='{{path('EGB_upload_outcome')}}'">{{ 'skill.return'|trans({}, 'EvalforGescompevalBundle') }}</button>
+			<form method="post" action="{{path('EGB_upload_outcome')}}">
+				<input type="hidden" name="confirm" value="true">
+	  			<button type="submit" class="btn btn-default">{{ 'skill.continue'|trans({}, 'EvalforGescompevalBundle') }}</button>
+	  		</form>
+		</div>
+	{% endif %}
+	<br>
+{% endblock %} 

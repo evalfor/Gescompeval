@@ -1,0 +1,5 @@
+Para actualizar la caché:
+
+app/console cache:clear
+app/console cache:clear --env=prod
+chmod 777 -R app/cache

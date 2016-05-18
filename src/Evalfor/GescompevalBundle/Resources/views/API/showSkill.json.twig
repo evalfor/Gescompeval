@@ -1,0 +1,25 @@
+{
+{% if skill != null %}
+	"id":"{{ skill.id }}",
+	"code":"{{ skill.code }}",
+	"shortdescription":"{{ skill.shortdescription }}",
+	"longdescription":"{{ skill.longdescription }}",
+	{% if skill.institution != null %}
+	"institution_id":"{{ skill.institution.getId() }}",
+	"institution_name":"{{ skill.institution.getName() }}",
+	{% else %}
+	"institution_id":"",
+	"institution_name":"",
+	{% endif %}
+	{% if skill.competencetype is defined %}
+		 {% if skill.competencetype != null %}
+			"competencetype_id":"{{ skill.competencetype.getId() }}",
+			"competencetype_type":"{{ skill.competencetype.getType() }}",
+		 {% else %}
+			"competencetype_id":"",
+			"competencetype_type":"",
+		 {% endif %}
+	{% endif %}
+	"skilltype":"{{ skilltype }}"
+{% endif %}
+}

@@ -1,0 +1,129 @@
+{% extends 'EvalforGescompevalBundle::layout.html.twig' %}
+
+{# type must be defined #}
+{% if type is defined %}
+
+{% block title %}
+	Gescompeval - {{ 'element.connect.title'|trans({}, 'EvalforGescompevalBundle') }}
+				  {{ type_trans|trans({}, 'EvalforGescompevalBundle') }}
+{% endblock %}
+
+{% block contenido %}
+
+	<!-- Functions that use ajax -->
+	<script type="text/javascript">
+
+		function iterateArray(array){
+			for(var i in array) {
+				//alert(objeto_json.myElements[i].id);
+				$("#id_duallistbox_elements option[value="+array[i].id +"]").attr("selected",true);
+			}
+		}
+
+	    function processResponse() {
+	    	// It obtains server's response
+	        var respuesta_json = this.req.responseText;
+	        // It tranforms text string into a json object
+	        var objeto_json = eval("("+respuesta_json+")");
+
+	     	// Empty elements list to connect
+	    	$('#id_duallistbox_elements').empty();
+
+	        // If the list is empty, it fills it again with the datas
+	        //if( $('#id_duallistbox_elements option').length == 0 ){
+			{% for diff_element in diff_elements_all %}
+				duallistbox.append('<option value="{{ diff_element.id }}"'+
+						'title="{{ diff_element.description }}">{{ diff_element.code }}</option>');
+			{% endfor %}
+	        //}
+	     	// If it has elements we mark them as no selected
+			//$('#id_duallistbox_elements').prop('selectedIndex', -1);
+
+			// Select connected elements according to the element type
+			{% if type == c_competence %}
+				iterateArray(objeto_json.connected_results);
+	        {% else %}
+	        	iterateArray(objeto_json.connected_competencies);
+	        {% endif %}
+
+			// Update duallistbox
+			duallistbox.trigger('bootstrapduallistbox.refresh');
+	    }
+
+	    function loadContents(el_id) {
+	        if (el_id != 0){
+	        	// Obtain server's name, api's URI and it adds the identificator request
+		        // Set URI according to element type
+		        {% if type == c_competence %}
+		        	var uri = "{{ server_host_Twig }}{{ path('EGB_API_show_connected_results', {'id': 0}) }}";
+		        {% else %}
+		        	var uri = "{{ server_host_Twig }}{{ path('EGB_API_show_connected_competencies', {'id': 0}) }}";
+		        {% endif %}
+		        uri = uri.replace('0', el_id);
+	    		var cargador = new net.CargadorContenidos(uri+".json", processResponse);
+	        }
+	    }
+
+	</script>
+
+	<div class="panel panel-default">
+		<div class="panel-heading">
+	    	<h3 class="panel-title">
+	    		{{ 'element.connect.title'|trans({}, 'EvalforGescompevalBundle') }}
+				{{ type_trans|trans({}, 'EvalforGescompevalBundle') }}
+	    	</h3>
+	    	</div>
+	   	<div class="panel-body">
+	    	<form id="id_form" action="{{  path('EGB_connect_elements', {'type': type}) }}"
+	    		  method="post" role="form" name="connect_elements_form">
+
+	    		<!-- Selection of element -->
+		    	<div class="row-fluid">
+			   		<select id="select_elements" class="selectpicker" data-style="btn-primary"
+		    				data-live-search="true" data-width="100%" name="select_elements"
+		    				onChange="loadContents(this.value)">
+		    			<option value="0">
+		    				{{ 'select'|trans({}, 'EvalforGescompevalBundle') }}
+		    				{{ type_trans|trans({}, 'EvalforGescompevalBundle') }}
+		    			</option>
+					    {% for element in elements_all %}
+				    		<optgroup label="{{ element.code }}">
+								<option style="white-space: pre-line;"
+										value="{{ element.id }}" title="{{ element.code }}">
+									{{ element.description }}</option>
+							</optgroup>
+				    	{% endfor %}
+					</select>
+				</div>
+
+				<!-- Connected elements -->
+				<div class="panel-body">
+					<div class="col-md-12">
+	                    <select id="id_duallistbox_elements" multiple="multiple" size="10"
+	                    		name="duallistbox_elements[]" class="duallistbox">
+	                    </select>
+	                </div>
+                </div>
+
+			    <button type="submit" class="btn btn-default">
+			    	{{ 'element.connect.submit'|trans({}, 'EvalforGescompevalBundle') }}
+			    </button>
+			</form>
+		</div>
+	</div>
+
+	<!-- It activates duallistbox -->
+	<script type="text/javascript">
+    {% if selected is defined and notselected is defined %}
+        var duallistbox = $('.duallistbox').bootstrapDualListbox({
+            nonselectedlistlabel: '{{ notselected|trans({}, 'EvalforGescompevalBundle') }}',
+            selectedlistlabel: '{{ selected|trans({}, 'EvalforGescompevalBundle') }}',
+            preserveselectiononmove: false,
+            moveonselect: false,
+            initialfilterfrom: ''
+        });
+    {% endif %}
+    </script>
+
+{% endblock %}
+{% endif %}{#% if type is defined %#}

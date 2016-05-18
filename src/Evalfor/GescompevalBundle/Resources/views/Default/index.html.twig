@@ -1,0 +1,28 @@
+{% set active_page = "index" %}
+{% extends 'EvalforGescompevalBundle::layout.html.twig' %}
+
+{%  block title %}
+  Gescompeval - {{ 'homepage.title'|trans({}, 'EvalforGescompevalBundle') }}
+{% endblock %}
+
+{% block contenido %}
+
+    <div class="lead">
+    	<ul>
+    		<li>
+    			<a href="{{ path('EGB_homepage', {'lang': 'es'})}}">
+    				<img src="{{ asset('bundles/evalforgescompeval/images/EspañaBanderaIcono.png') }}"
+			 			 border=0 alt="Español" width="30" height="30" />
+    			</a>
+    		</li>
+    		<li>
+    			<a href="{{ path('EGB_homepage', {'lang': 'en'})}}">
+    				<img src="{{ asset('bundles/evalforgescompeval/images/ReinoUnidoBanderaIcono.png') }}"
+			 			 border=0 alt="English" width="30" height="30" />
+    			</a>
+    		</li>
+    	</ul>
+        <p>{{ 'homepage.content'|trans({}, 'EvalforGescompevalBundle') }}</p>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,101 @@
+{% extends 'EvalforGescompevalBundle::layout.html.twig' %}
+
+{% block title %}
+{% endblock %}
+
+{% block contenido %}
+
+	{% block ajax %}
+	{% endblock %}
+
+	<div class="panel panel-default">
+		<div class="panel-heading">
+	    	<h3 class="panel-title">
+				{% block skill_title %}
+					{{ 'competency.list'|trans({}, 'EvalforGescompevalBundle') }}
+				{% endblock %}
+	    	</h3>
+	    </div>
+	</div>
+	
+	<div class="row">
+		<div class="col-lg-6 lead">
+			{{ totalItems }} {{ 'skill.competencies'|trans({}, 'EvalforGescompevalBundle') | lower }}
+		</div>
+ 		<div class="col-lg-6">
+ 			<form action="{{ path('EGB_list_competency')}}" method="GET">
+    			<div class="input-group">
+	    			<input type="search" class="form-control" placeholder="Search for..." name="search" value="{{search}}">
+		     		<span class="input-group-btn">
+		       			<button required class="btn btn-default" type="submit" >{{ 'skill.search'|trans({}, 'EvalforGescompevalBundle') }}</button>
+		     		</span>
+		   		</div><!-- /input-group -->
+	    	</form>
+ 		</div><!-- /.col-lg-6 -->
+	</div><!-- /.row -->
+	
+	{% if pagesCount > 1 %}
+		<div>
+			<ul class="pagination">
+				{% for i in 1..pagesCount %}
+					{% if i == page %}
+						<li class="active"><a href="{{ path('EGB_list_competency', {'page': i, 'order': order, 'search' : search}) }}">{{ i }}</a></li> 
+					{% else %}
+						<li><a href="{{ path('EGB_list_competency', {'page': i, 'order': order, 'search' : search}) }}">{{ i }}</a></li> 
+					{% endif %}
+				{% endfor %}
+			</ul>
+		</div>
+	{% endif %}
+		
+	<div id="table">	
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th><a href="{{ path('EGB_list_competency', { 'page': page, 'order': 'code', 'search' : search })}}">{{ 'list.code'|trans({}, 'EvalforGescompevalBundle') }}</a></th>
+					<th><a href="{{ path('EGB_list_competency', { 'page': page, 'order': 'shortdescription', 'search' : search })}}">{{ 'list.shortdescription'|trans({}, 'EvalforGescompevalBundle') }}</a></th>
+					<th><a href="{{ path('EGB_list_competency', { 'page': page, 'order': 'longdescription', 'search' : search })}}">{{ 'list.longdescription'|trans({}, 'EvalforGescompevalBundle') }}</a></th>
+					<th><a href="{{ path('EGB_list_competency', { 'page': page, 'order': 'type', 'search' : search })}}">{{ 'competencetype.competencetype'|trans({}, 'EvalforGescompevalBundle') }}</a></th>
+					<th><a href="{{ path('EGB_list_competency', { 'page': page, 'order': 'name', 'search' : search })}}">{{ 'institution.institution'|trans({}, 'EvalforGescompevalBundle') }}</a></th>
+					<th>{{ 'list.edit'|trans({}, 'EvalforGescompevalBundle') }}</th>
+				</tr>
+			</thead>
+			<tbody>
+			{% for skill in skills_all %}
+				<tr>
+					<td>{{ skill.code }}</td>					
+					<td>{{ skill.shortdescription }}</td>
+					<td>{{ skill.longdescription }}</td>
+					<td>{{ skill.type }}</td>
+					<td>{{ skill.name }}</td>
+					<td>
+					{#<a href="{{ path('EGB_read_competency', { 'id': skill.id })}}">
+							{{ 'skill.read.title'|trans({}, 'EvalforGescompevalBundle') }}
+						</a>#}
+						<a href="{{ path('EGB_update_competency_id', { 'id': skill.id })}}" data-toggle="tooltip" title="{{ 'skill.update.title'|trans({}, 'EvalforGescompevalBundle') }}">
+							<span class="glyphicon glyphicon-cog" aria-label="{{ 'skill.update.title'|trans({}, 'EvalforGescompevalBundle') }}"></span>
+						</a>
+						<a href="{{ path('EGB_delete_competency_id', { 'page': page, 'id': skill.id, 'order': order, 'search': search })}}" onclick="return confirm('{{ 'competency.confirm'|trans({}, 'EvalforGescompevalBundle') }}');" data-toggle="tooltip" title="{{ 'skill.delete.title'|trans({}, 'EvalforGescompevalBundle') }}">
+							<span class="glyphicon glyphicon-remove" aria-label="{{ 'skill.delete.title'|trans({}, 'EvalforGescompevalBundle') }}"></span>
+						</a>
+					</td>			
+				</tr>
+			{% endfor %}
+		
+			</tbody>
+		</table>
+	</div>
+	{% if pagesCount > 1 %}
+		<div>
+			<ul class="pagination">
+				{% for i in 1..pagesCount %}
+					{% if i == page %}
+						<li class="active"><a href="{{ path('EGB_list_competency', {'page': i, 'order': order, 'search' : search}) }}">{{ i }}</a></li> 
+					{% else %}
+						<li><a href="{{ path('EGB_list_competency', {'page': i, 'order': order, 'search' : search}) }}">{{ i }}</a></li> 
+					{% endif %}
+				{% endfor %}
+			</ul>
+		</div>
+	{% endif %}
+{% endblock %} 

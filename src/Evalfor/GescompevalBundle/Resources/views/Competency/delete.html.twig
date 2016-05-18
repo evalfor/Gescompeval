@@ -1,0 +1,19 @@
+{% extends 'EvalforGescompevalBundle:Skill:parentdelete.html.twig' %}
+
+{% block title %}
+	Gescompeval - {{ 'competency.delete.title'|trans({}, 'EvalforGescompevalBundle') }}
+{% endblock %}
+
+{% block skill_title %}
+	{{ 'competency.delete.title'|trans({}, 'EvalforGescompevalBundle') }}
+{% endblock %}
+
+{% block form_tag %}
+	<form action="{{ path('EGB_delete_competency') }}" method="post" role="form">
+{% endblock %}
+
+{% block option0 %}
+	<option value="0">
+		{{ 'competency.select'|trans({}, 'EvalforGescompevalBundle') }}
+    </option>
+{% endblock %}

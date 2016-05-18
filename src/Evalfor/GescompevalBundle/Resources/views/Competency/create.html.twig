@@ -1,0 +1,24 @@
+{% extends 'EvalforGescompevalBundle:Skill:parentcreate.html.twig' %}
+
+{% block title %}
+	Gescompeval - {{ 'competency.create.title'|trans({}, 'EvalforGescompevalBundle') }}
+{% endblock %}
+
+{% block skill_title %}
+	{{ 'competency.create.title'|trans({}, 'EvalforGescompevalBundle') }}
+{% endblock %}
+
+{% block form_tag %}
+	<form action="{{ path('EGB_create_competency') }}" method="post" role="form">
+{% endblock %}
+
+{% block competencetype %}
+	<div class="form-group">
+		<div class="row-fluid">
+			{{ form_label(form.competencetype) }}
+			<br />
+			{{ form_errors(form.competencetype) }}
+			{{ form_widget(form.competencetype) }}
+		</div>
+	</div>
+{% endblock %}

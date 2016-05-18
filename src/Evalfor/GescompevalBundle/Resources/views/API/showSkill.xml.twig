@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<sc:skill xmlns:sc="showSkill"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="showSkill.xsd">
+	{%  if skill != null %}
+		<id>{{ skill.id }}</id>
+		<code>{{ skill.code }}</code>
+		<shortdescription>{{ skill.shortdescription }}</shortdescription>
+		<longdescription>{{ skill.longdescription }}</longdescription>
+		{%  if skill.institution != null %}
+			<institution_id>{{ skill.institution.getId() }}</institution_id>
+			<institution_name>{{ skill.institution.getName() }}</institution_name>
+		{%  else %}
+			<institution_id/>
+			<institution_name/>
+		{%  endif %}
+		{% if skill.competencetype is defined %}
+			 {% if skill.competencetype != null %}
+				<competencetype_id>{{ skill.competencetype.getId() }}</competencetype_id>
+				<competencetype_type>{{ skill.competencetype.getType() }}</competencetype_type>
+			 {% else %}
+				<competencetype_id/>
+				<competencetype_type/>
+			 {% endif %}
+    	{% endif %}
+		<skilltype>{{ skilltype }}</skilltype>
+	{%  endif %}
+</sc:skill>

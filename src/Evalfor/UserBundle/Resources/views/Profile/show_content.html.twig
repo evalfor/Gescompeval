@@ -1,0 +1,15 @@
+<div class="panel panel-default">
+	<div class="panel-heading">
+    	<h3 class="panel-title">{{ 'profile.title'|trans({}, 'FOSUserBundle') }}</h3>
+    </div>
+   	<div class="panel-body">
+		<div class="fos_user_user_show">
+		    <p>{{ 'profile.show.username'|trans({}, 'FOSUserBundle') }}: {{ user.username }}</p>
+		    <p>{{ 'profile.show.email'|trans({}, 'FOSUserBundle') }}: {{ user.email }}</p>
+		    <p><a href="{{ path('fos_user_change_password') }}">
+						{{ 'change_password.submit'|trans({}, 'FOSUserBundle') }}</a></p>
+			<p><a href="{{ path('fos_user_profile_edit') }}">
+						{{ 'profile.edit.submit'|trans({}, 'FOSUserBundle') }}</a></p>
+		</div>
+	</div>
+</div>

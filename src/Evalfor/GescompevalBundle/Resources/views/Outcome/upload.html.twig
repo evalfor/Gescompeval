@@ -1,0 +1,29 @@
+{% extends 'EvalforGescompevalBundle:Skill:parentupload.html.twig' %}
+
+{% block title %}
+{% endblock %}
+
+
+{% block ajax %}
+{% endblock %}
+
+
+{% block skill_title %}
+	{{ 'outcome.upload.title'|trans({}, 'EvalforGescompevalBundle') }}
+{% endblock %}
+
+{% block form_tag %}
+	<form action="{{ path('EGB_upload_outcome') }}" method="post" enctype="multipart/form-data" role="form" class="form-horizontal">
+{% endblock %}
+
+{% block instructions %}
+{{ 'outcome.upload.help'|trans({}, 'EvalforGescompevalBundle') }}:
+<ul>
+	<li>{{ 'outcome.upload.instruction1'|trans({}, 'EvalforGescompevalBundle') }}</li>
+	<li>{{ 'outcome.upload.instruction2'|trans({}, 'EvalforGescompevalBundle') }}</li>
+	<li>{{ 'outcome.upload.instruction3'|trans({}, 'EvalforGescompevalBundle') }}</li>
+	<li>{{ 'outcome.upload.instruction4'|trans({}, 'EvalforGescompevalBundle') }}</li>
+	<li>{{ 'outcome.upload.instruction5'|trans({}, 'EvalforGescompevalBundle') }}</li>
+	<li>{{ 'outcome.upload.instruction6'|trans({}, 'EvalforGescompevalBundle') }}</li> 
+</ul>	
+{% endblock %}

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<sr:institutions xmlns:sr="showInstitutions"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="showInstitutions showInstitutions.xsd">
+	{% for institution in institutions %}
+	<institution>
+		<id>{{ institution.id }}</id>
+		<name>{{ institution.name }}</name>
+		<description>{{ institution.description }}</description>
+	</institution>
+	{% endfor %}
+</sr:institutions>

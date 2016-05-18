@@ -1,0 +1,13 @@
+{"abilities":[
+{% if elements != false %}
+	{% for element in elements %}
+	{% if element != false %}
+		{"id":"{{ element.id }}",
+		"code":"{{ element.code }}",
+		"description":"{{ element.description }}",
+		"type":"{{ element.type }}",
+		},
+	{% endif %}
+	{% endfor %}
+{% endif %}
+]}

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+xmlns="showSkills"
+targetNamespace="showSkills">
+	<xs:element name="skills">
+	    <xs:annotation>
+	      <xs:documentation xml:lang="en-EN">All the skills</xs:documentation>
+	    </xs:annotation>
+	    <xs:complexType>
+	      <xs:sequence>
+	        <xs:element name="skill" minOccurs="0" maxOccurs="unbounded">
+			    <xs:annotation>
+			      <xs:documentation xml:lang="en-EN">One skill</xs:documentation>
+			    </xs:annotation>
+			    <xs:complexType>
+			      <xs:sequence>
+	        		<xs:element name="id" minOccurs="0" maxOccurs="1" />
+	        		<xs:element name="code" minOccurs="0" maxOccurs="1" />
+	        		<xs:element name="shortdescription" minOccurs="0" maxOccurs="1" />
+	        		<xs:element name="longdescription" minOccurs="0" maxOccurs="1" />
+	        		<xs:element name="institution_id" minOccurs="0" maxOccurs="1" />
+	        		<xs:element name="institution_name" minOccurs="0" maxOccurs="1" />
+	        		<xs:element name="competencetype_id" minOccurs="0" maxOccurs="1" />
+	        		<xs:element name="competencetype_type" minOccurs="0" maxOccurs="1" />
+	        		<xs:element name="skilltype" minOccurs="0" maxOccurs="1" />	        
+	      		  </xs:sequence>
+			    </xs:complexType>
+			</xs:element>        
+	      </xs:sequence>
+	    </xs:complexType>
+	</xs:element>
+</xs:schema>

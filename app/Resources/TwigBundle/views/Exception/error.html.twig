@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <!-- Bootstrap core CSS -->
+	    <link href="{{ asset('bundles/evalforgescompeval/css/bootstrap.min.css') }}"
+	    	  type="text/css" rel="stylesheet">
+	    <!-- Bootstrap theme -->
+		<link href="{{ asset('bundles/evalforgescompeval/css/bootstrap-theme.css') }}"
+		  type="text/css" rel="stylesheet" media="all">
+		<!-- Custom styles for this template -->
+		<link href="{{ asset('bundles/evalforgescompeval/css/theme.css') }}" rel="stylesheet">
+		<script src="{{ asset('bundles/evalforgescompeval/js/jquery-1.10.2.min.js') }}"></script>
+	    <!-- Include all compiled plugins (below), or include individual files as needed -->
+	    <script src="{{ asset('bundles/evalforgescompeval/js/bootstrap.min.js') }}"></script>
+	    <!-- Bootstrap select -->
+		<script src="{{ asset('bundles/evalforgescompeval/js/bootstrap-select.min.js') }}"></script>
+
+		<link rel="icon" type="image/x-icon"
+			href="{{ asset('bundles/evalforgescompeval/images/favicon.ico') }}" />
+        <title>Gescompeval - {{ 'error.ocurred'|trans({}, 'EvalforGescompevalBundle') }}: {{ status_text }}</title>
+    </head>
+    <body>
+    	<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+	      <div class="container">
+	        <div class="navbar-collapse collapse">
+	          <ul class="nav navbar-nav">
+	            <li id="li_homepage"><a href="{{ path('EGB_homepage')}}">
+	            	{{ 'homepage.title'|trans({}, 'EvalforGescompevalBundle') }}</a></li>
+	          </ul>
+	        </div>
+	      </div>
+	    </div>
+	    <div class="container theme-showcase">
+	    	<div class="jumbotron" align="center">
+		    	<img src="{{ asset('bundles/evalforgescompeval/images/logo3.png') }}" border=0
+		    		 alt="Logo Gescompeval" />
+		    </div>
+		    <div class="lead">
+		        <h1>{{ 'error.ocurred'|trans({}, 'EvalforGescompevalBundle') }}</h1>
+		        <h2>{{ 'error.server'|trans({}, 'EvalforGescompevalBundle') }} "{{ status_code }} {{ status_text }}".</h2>
+
+		        <div>
+		            {{ 'error.text'|trans({}, 'EvalforGescompevalBundle') }}
+		        </div>
+		    </div>
+	        <div class="well" align="center">
+				<p>{{ 'footer.research_group'|trans({}, 'EvalforGescompevalBundle') }}
+				<img src="{{ asset('bundles/evalforgescompeval/images/evalfor.gif') }}"
+				 	 border=0 alt="Logo Evalfor" /></p>
+	    		<p>{{ 'footer.university'|trans({}, 'EvalforGescompevalBundle') }}</p>
+			</div>
+		</div>
+    </body>
+</html>

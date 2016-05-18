@@ -1,0 +1,73 @@
+{% set active_page = 'competencetype' %}
+{% extends 'EvalforGescompevalBundle::layout.html.twig' %}
+
+{% block title %}
+	Gescompeval - {{ 'competencetype.update.title'|trans({}, 'EvalforGescompevalBundle') }}
+{% endblock %}
+
+{% block contenido %}
+
+	<!-- Functions that use ajax -->
+	<script type="text/javascript">
+
+	    function processResponse() {
+	    	// Obtain server's response and tranform text string into a json object
+	        var respuesta_json = this.req.responseText;
+	        var objeto_json = eval("("+respuesta_json+")");
+
+	        // Fill the fields of the form
+	        $('#CompetenceTypeForm_id').val(objeto_json.id);
+			$('#CompetenceTypeForm_type').val(decodechars(objeto_json.type));
+			$('#CompetenceTypeForm_description').val(decodechars(objeto_json.description));
+			//$('.selectpicker').selectpicker('refresh');
+	    }
+
+	    function loadContents(ctype_id) {
+	        if (ctype_id != 0){
+	        	// Obtain server's name, api's URI and add the identificator request
+		        var uri = "{{ server_host_Twig }}{{ path('EGB_API_show_competencetype', {'id': 0}) }}";
+		        uri = uri.replace('0', ctype_id);
+	    		var cargador = new net.CargadorContenidos(uri+".json", processResponse);
+	        }
+	    }
+
+	</script>
+
+	<div class="panel panel-default">
+		<div class="panel-heading">
+	    	<h3 class="panel-title">
+	    		{{ 'competencetype.update.title'|trans({}, 'EvalforGescompevalBundle') }}
+	    	</h3>
+	    </div>
+	   	<div class="panel-body">
+	    	<form id="id_form" action="{{  path('EGB_update_competencetype') }}"
+	    		  method="post" role="form">
+		    	<div class="row-fluid">
+			   		<select id="select_competencetypes" class="selectpicker" data-style="btn-primary"
+			   			data-live-search="true" data-width="100%" onChange="loadContents(this.value)">
+		    			<option value="0">
+							{{ 'select'|trans({}, 'EvalforGescompevalBundle') }}
+							{{ 'competencetype.competencetype'|trans({}, 'EvalforGescompevalBundle') }}
+		    			</option>
+					    {% for competencetype in competencetypes_all %}
+							<option style="white-space: pre-line;"
+									value="{{ competencetype.id }}" title="{{ competencetype.type }}">
+									{{ competencetype.type }}</option>
+				    	{% endfor %}
+					</select>
+				</div>
+			    <div class="form-group">
+					{{ form_row(form.type) }}
+				</div>
+				<div class="form-group">
+					{{ form_row(form.description) }}
+				</div>
+				{{ form_row(form.id) }}
+				{{ form_row(form._token) }}
+			    <button type="submit" class="btn btn-default">
+			    	{{ 'competencetype.update.title'|trans({}, 'EvalforGescompevalBundle') }}
+			    </button>
+			</form>
+		</div>
+	</div>
+{% endblock %}

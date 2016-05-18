@@ -1,0 +1,47 @@
+{% extends 'EvalforGescompevalBundle:Skill:parentupdate.html.twig' %}
+
+{% block title %}
+	Gescompeval - {{ 'outcome.update.title'|trans({}, 'EvalforGescompevalBundle') }}
+{% endblock %}
+
+{% block ajax %}
+	<!-- Functions that use ajax -->
+	<script type="text/javascript">
+	    function processResponse() {
+	    	// Obtain server's response and tranform text string into a json object
+	        var respuesta_json = this.req.responseText;
+	        var objeto_json = eval("("+respuesta_json+")");
+
+	        // Fill the fields of the form
+	        $('#OutcomeForm_id').val(objeto_json.id);
+			$('#OutcomeForm_code').val(decodechars(objeto_json.code));
+			$('#OutcomeForm_shortdescription').val(decodechars(objeto_json.shortdescription));
+			$('#OutcomeForm_longdescription').val(decodechars(objeto_json.longdescription));
+			$('#OutcomeForm_institution').val(objeto_json.institution_id);
+			$('.selectpicker').selectpicker('refresh');
+	    }
+
+	    function loadContents(skill_id) {
+	        if (skill_id != 0){
+	        	// Obtain server's name, api's URI and add the identificator request
+		        var uri = "{{ server_host_Twig }}{{ path('EGB_API_show_outcome', {'id': 0}) }}";
+		        uri = uri.replace('0', skill_id);
+	    		var cargador = new net.CargadorContenidos(uri+".json", processResponse);
+	        }
+	    }
+	</script>
+{% endblock %}
+
+{% block skill_title %}
+	{{ 'outcome.update.title'|trans({}, 'EvalforGescompevalBundle') }}
+{% endblock %}
+
+{% block form_tag %}
+	<form action="{{ path('EGB_update_outcome') }}" method="post" role="form">
+{% endblock %}
+
+{% block option0 %}
+	<option value="0">
+		{{ 'outcome.select'|trans({}, 'EvalforGescompevalBundle') }}
+    </option>
+{% endblock %}

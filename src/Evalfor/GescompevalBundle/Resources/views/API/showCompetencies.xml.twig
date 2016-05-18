@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<sc:competencies xmlns:sc="showCompetencies"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="showCompetencies.xsd">
+	{% for competency in competencies %}
+	<competency>
+		<id>{{ competency.id }}</id>
+		<code>{{ competency.code }}</code>
+		<shortdescription>{{ competency.shortdescription }}</shortdescription>
+		<longdescription>{{ competency.longdescription }}</longdescription>
+		{%  if competency.institution != null %}
+			<institution_id>{{ competency.institution.getId() }}</institution_id>
+			<institution_name>{{ competency.institution.getName() }}</institution_name>
+		{%  else %}
+			<institution_id/>
+			<institution_name/>
+		{%  endif %}
+		{%  if competency.competencetype != null %}
+			<competencetype_id>{{ competency.competencetype.getId() }}</competencetype_id>
+			<competencetype_type>{{ competency.competencetype.getType() }}</competencetype_type>
+		{%  else %}
+			<competencetype_id/>
+			<competencetype_type/>
+		{%  endif %}
+	</competency>
+	{% endfor %}
+</sc:competencies>

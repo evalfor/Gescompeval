@@ -1,0 +1,4 @@
+# Ruta creada para la edición de usuarios
+#fos_user_registration_edit:
+#    pattern:  /register/edit
+#    defaults: { _controller: EvalforUserBundle:Registration:edit }

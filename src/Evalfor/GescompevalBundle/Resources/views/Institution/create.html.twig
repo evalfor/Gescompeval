@@ -1,0 +1,30 @@
+{% set active_page = 'institution' %}
+{% extends 'EvalforGescompevalBundle::layout.html.twig' %}
+
+{% block title %}
+	Gescompeval - {{ 'institution.create.title'|trans({}, 'EvalforGescompevalBundle') }}
+{% endblock %}
+
+{% block contenido %}
+	<div class="panel panel-default">
+		<div class="panel-heading">
+	    	<h3 class="panel-title">
+	    		{{ 'institution.create.title'|trans({}, 'EvalforGescompevalBundle') }}
+	    	</h3>
+	    	</div>
+	   	<div class="panel-body">
+	    	<form action="{{ path('EGB_create_institution') }}" method="post" role="form">
+			    <div class="form-group">
+					{{ form_row(form.name) }}
+				</div>
+				<div class="form-group">
+					{{ form_row(form.description) }}
+				</div>
+				{{ form_row(form._token) }}
+			    <button type="submit" class="btn btn-default">
+			    	{{ 'institution.create.title'|trans({}, 'EvalforGescompevalBundle') }}
+			    </button>
+			</form>
+		</div>
+	</div>
+{% endblock %}

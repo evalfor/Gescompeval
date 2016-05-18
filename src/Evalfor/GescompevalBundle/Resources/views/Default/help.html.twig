@@ -1,0 +1,21 @@
+{% set active_page = "help" %}
+{% extends 'EvalforGescompevalBundle::layout.html.twig' %}
+
+{%  block title %}
+  Gescompeval - {{ 'help.title'|trans({}, 'EvalforGescompevalBundle') }}
+{% endblock %}
+
+{% block contenido %}
+
+    <div class="lead">
+        <p>{{ 'help.manual_not_yet'|trans({}, 'EvalforGescompevalBundle') }} </p>
+        <p>{{ 'help.author'|trans({}, 'EvalforGescompevalBundle') }} Juan Antonio Caballero Hernández
+        </p>
+        <p>{{ 'help.email'|trans({}, 'EvalforGescompevalBundle') }} juanantonio.caballero@uca.es </p>
+        <br>
+        <p>{{ 'help.author'|trans({}, 'EvalforGescompevalBundle') }} Daniel Cabeza Sánchez
+        </p>
+        <p>{{ 'help.email'|trans({}, 'EvalforGescompevalBundle') }} daniel.cabeza@uca.es </p>
+    </div>
+
+{% endblock %}

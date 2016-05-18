@@ -1,0 +1,10 @@
+{"institutions":
+    [
+		{% for institution in institutions %}
+			{"id":"{{ institution.id }}",
+			"name":"{{ institution.name }}",
+			"description":"{{ institution.description }}",
+			},
+    	{% endfor %}
+	]
+}

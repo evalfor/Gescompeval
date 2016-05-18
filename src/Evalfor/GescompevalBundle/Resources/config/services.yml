@@ -1,0 +1,20 @@
+parameters:
+#    evalfor_gescompeval.example.class: Evalfor\GescompevalBundle\Example
+
+services:
+     evalfor.language.interactive_login_listener:
+        class: Evalfor\GescompevalBundle\EventListener\LanguageListener
+        arguments: ["%kernel.default_locale%"]
+        tags:
+            - { name: kernel.event_subscriber }
+## Code added by Daniel Cabeza
+## START             
+     evalfor.common.util:
+        class:  Evalfor\GescompevalBundle\Utils\utilClass
+        arguments: [ "@doctrine.orm.entity_manager" ]
+## Code added by Daniel Cabeza
+## END
+ 
+#    evalfor_gescompeval.example:
+#        class: %evalfor_gescompeval.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

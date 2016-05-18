@@ -1,0 +1,10 @@
+{"competencetypes":
+    [
+		{% for competencetype in competencetypes %}
+			{"id":"{{ competencetype.id }}",
+			"type":"{{ competencetype.type }}",
+			"description":"{{ competencetype.description }}",
+			},
+    	{% endfor %}
+	]
+}

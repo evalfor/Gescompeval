@@ -1,0 +1,59 @@
+{% extends 'EvalforGescompevalBundle:Skill:parentupdate.html.twig' %}
+
+{% block title %}
+	Gescompeval - {{ 'competency.update.title'|trans({}, 'EvalforGescompevalBundle') }}
+{% endblock %}
+
+{% block ajax %}
+	<!-- Functions that use ajax -->
+	<script type="text/javascript">
+	    function processResponse() {
+	    	// Obtain server's response and tranform text string into a json object
+	        var respuesta_json = this.req.responseText;
+	        var objeto_json = eval("("+respuesta_json+")");
+
+	        // Fill the fields of the form
+	        $('#CompetencyForm_id').val(objeto_json.id);
+			$('#CompetencyForm_code').val(decodechars(objeto_json.code));
+			$('#CompetencyForm_shortdescription').val(decodechars(objeto_json.shortdescription));
+			$('#CompetencyForm_longdescription').val(decodechars(objeto_json.longdescription));
+			$('#CompetencyForm_institution').val(objeto_json.institution_id);
+			$('#CompetencyForm_competencetype').val(objeto_json.competencetype_id);
+			$('.selectpicker').selectpicker('refresh');
+	    }
+
+	    function loadContents(skill_id) {
+	        if (skill_id != 0){
+	        	// Obtain server's name, api's URI and add the identificator request
+		        var uri = "{{ server_host_Twig }}{{ path('EGB_API_show_competency', {'id': 0}) }}";
+		        uri = uri.replace('0', skill_id);
+	    		var cargador = new net.CargadorContenidos(uri+".json", processResponse);
+	        }
+	    }
+	</script>
+{% endblock %}
+
+{% block skill_title %}
+	{{ 'competency.update.title'|trans({}, 'EvalforGescompevalBundle') }}
+{% endblock %}
+
+{% block form_tag %}
+	<form action="{{ path('EGB_update_competency') }}" method="post" role="form">
+{% endblock %}
+
+{% block option0 %}
+	<option value="0">
+		{{ 'competency.select'|trans({}, 'EvalforGescompevalBundle') }}
+    </option>
+{% endblock %}
+
+{% block competencetype %}
+	<div class="form-group">
+		<div class="row-fluid">
+			{{ form_label(form.competencetype) }}
+			<br />
+			{{ form_errors(form.competencetype) }}
+			{{ form_widget(form.competencetype) }}
+		</div>
+	</div>
+{% endblock %}

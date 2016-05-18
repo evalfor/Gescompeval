@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<sc:competencetype xmlns:sc="showCompetenceType"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="showCompetenceType.xsd">
+	{%  if competencetype != false %}
+	<id>{{ competencetype.id }}</id>
+	<type>{{ competencetype.type }}</type>
+	<description>{{ competencetype.description }}</description>
+	{%  endif %}
+</sc:competencetype>

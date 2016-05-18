@@ -1,0 +1,41 @@
+{% set active_page = 'institution' %}
+{% extends 'EvalforGescompevalBundle::layout.html.twig' %}
+
+{%  block title %}
+  Gescompeval - {{ 'institution.delete.title'|trans({}, 'EvalforGescompevalBundle') }}
+{% endblock %}
+
+{% block contenido %}
+	<div class="panel panel-default">
+		<div class="panel-heading">
+	    	<h3 class="panel-title">
+	    		{{ 'institution.delete.title'|trans({}, 'EvalforGescompevalBundle') }}
+	    	</h3>
+	    </div>
+	   	<div class="panel-body">
+	    	<form id="id_form" action="{{  path('EGB_delete_institution') }}"
+	    		  method="post" role="form">
+		    	<div class="row-fluid">
+			   		<select id="select_institutions" class="selectpicker" data-style="btn-primary"
+		    				data-live-search="true" data-width="100%"
+		    				onChange="changeId('select_institutions','InstitutionForm_id')">
+		    			<option value="0">
+		    				{{ 'select'|trans({}, 'EvalforGescompevalBundle') }}
+		    				{{ 'institution.institution'|trans({}, 'EvalforGescompevalBundle') }}
+		    			</option>
+					    {% for institution in institutions_all %}
+							<option style="white-space: pre-line;"
+									value="{{ institution.id }}" title="{{ institution.name }}">
+								{{ institution.name }}</option>
+				    	{% endfor %}
+					</select>
+				</div>
+				{{ form_row(form.id) }}
+				{{ form_row(form._token) }}
+			    <button type="submit" class="btn btn-default">
+			    	{{ 'institution.delete.title'|trans({}, 'EvalforGescompevalBundle') }}
+			    </button>
+			</form>
+		</div>
+	</div>
+{% endblock %}

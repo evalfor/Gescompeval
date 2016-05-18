@@ -1,0 +1,289 @@
+{% extends '::base.html.twig' %}
+
+{# For a clearly code: #}
+{% set c_competence = "competency" %}
+{% set c_result = "result" %}
+
+{# If a skill type is defined #}
+{% if type is defined %}
+	{# It saves it in active_page variable #}
+	{% set active_page = type %}
+	{# Save some translation variables #}
+	{% if type == c_competence %}
+			{% set type_trans = 'skill.competency' %}
+			{% set notselected = 'skill.connect.outcomes_not_selected' %}
+			{% set selected = 'skill.connect.outcomes_selected' %}
+	{% elseif type == c_result %}
+		{% set type_trans = 'skill.outcome' %}
+		{% set notselected = 'skill.connect.competencies_not_selected' %}
+		{% set selected = 'skill.connect.competencies_selected' %}
+	{% endif %}
+{% endif %}
+
+{% block stylesheets %}
+	<!-- Bootstrap core CSS -->
+    <link href="{{ asset('bundles/evalforgescompeval/css/bootstrap.min.css') }}"
+    	  type="text/css" rel="stylesheet">
+    <!-- Bootstrap theme -->
+	<link href="{{ asset('bundles/evalforgescompeval/css/bootstrap-theme.css') }}"
+		  type="text/css" rel="stylesheet" media="all">
+    <!-- Custom styles for this template -->
+	<link href="{{ asset('bundles/evalforgescompeval/css/theme.css') }}" rel="stylesheet">
+	<!-- Bootstrap select -->
+    <link href="{{ asset('bundles/evalforgescompeval/css/bootstrap-select.min.css') }}"
+    	  type="text/css" rel="stylesheet" media="all">
+   	<!-- Bootstrap dual-list -->
+    <link href="{{ asset('bundles/evalforgescompeval/css/bootstrap-duallistbox.css') }}"
+    	  type="text/css" rel="stylesheet" media="all">
+    <link href="{{ asset('bundles/evalforgescompeval/css/prettify.css') }}" rel="stylesheet"
+    	  type="text/css" media="all">
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="{{ asset('bundles/evalforgescompeval/js/jquery-1.10.2.min.js') }}"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="{{ asset('bundles/evalforgescompeval/js/bootstrap.min.js') }}"></script>
+    <!-- Bootstrap select -->
+	<script src="{{ asset('bundles/evalforgescompeval/js/bootstrap-select.min.js') }}"></script>
+	<!-- Bootstrap dual listbox -->
+	<script src="{{ asset('bundles/evalforgescompeval/js/jquery.bootstrap-duallistbox.js') }}">
+	</script>
+	<script src="{{ asset('bundles/evalforgescompeval/js/modernizr-custom.min.js') }}"></script>
+	<script src="{{ asset('bundles/evalforgescompeval/js/prettify.js') }}"></script>
+	 <!-- My javascript functions -->
+	<script src="{{ asset('bundles/evalforgescompeval/js/js-functions.js') }}"></script>
+	<!-- Ajax -->
+	<script src="{{ asset('bundles/evalforgescompeval/js/load-contents-ajax.js') }}"></script>
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+{% endblock %}
+
+{% block favicon %}
+	<link rel="icon" type="image/x-icon"
+			href="{{ asset('bundles/evalforgescompeval/images/favicon.ico') }}" />
+{% endblock %}
+
+{% block title %}Gescompeval{% endblock %}
+
+{% block body %}
+ 	<!-- Fixed navbar -->
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li id="li_homepage"><a href="{{ path('EGB_homepage')}}">
+            	{{ 'homepage.title'|trans({}, 'EvalforGescompevalBundle') }}</a></li>
+            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+            <li id="li_competencies" class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              	{{ 'skill.competencies'|trans({}, 'EvalforGescompevalBundle') }}
+              	<b class="caret"></b></a>
+              <ul class="dropdown-menu">
+				<li><a href="{{ path('EGB_list_competency')}}">
+                	{{ 'skill.read.title'|trans({}, 'EvalforGescompevalBundle') }}</a></li>
+                <li><a href="{{ path('EGB_create_competency')}}">
+                	{{ 'skill.create.title'|trans({}, 'EvalforGescompevalBundle') }}</a></li>
+                <li><a href="{{ path('EGB_update_competency')}}">
+                	{{ 'skill.update.title'|trans({}, 'EvalforGescompevalBundle') }}</a></li>
+                <li><a href="{{ path('EGB_delete_competency')}}">
+                	{{ 'skill.delete.title'|trans({}, 'EvalforGescompevalBundle') }}</a></li>
+                <li><a href="{{ path('EGB_upload_competency')}}">
+                	{{ 'skill.upload'|trans({}, 'EvalforGescompevalBundle') }}</a></li>
+              </ul>
+            </li>
+            {% endif %}
+            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+            <li id="li_results" class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              	{{ 'skill.learning_outcomes'|trans({}, 'EvalforGescompevalBundle') }}
+              	<b class="caret"></b></a>
+              <ul class="dropdown-menu">
+              	<li><a href="{{ path('EGB_list_outcome')}}">
+                	{{ 'skill.read.title'|trans({}, 'EvalforGescompevalBundle') }}</a></li>
+                <li><a href="{{ path('EGB_create_outcome')}}">
+                	{{ 'skill.create.title'|trans({}, 'EvalforGescompevalBundle') }}</a></li>
+                <li><a href="{{ path('EGB_update_outcome')}}">
+                	{{ 'skill.update.title'|trans({}, 'EvalforGescompevalBundle') }}</a></li>
+                <li><a href="{{ path('EGB_delete_outcome')}}">
+                	{{ 'skill.delete.title'|trans({}, 'EvalforGescompevalBundle') }}</a></li>
+                <li><a href="{{ path('EGB_upload_outcome')}}">
+                	{{ 'skill.upload'|trans({}, 'EvalforGescompevalBundle') }}</a></li>
+              </ul>
+            </li>
+            {% endif %}
+            {% if is_granted("ROLE_ADMIN") %}
+            <li id="li_users" class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              		{{ 'users'|trans({}, 'EvalforGescompevalBundle') }}<b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="{{ path('fos_user_registration_register')}}">
+                	{{ 'registration.title'|trans({}, 'EvalforGescompevalBundle') }}</a></li>
+                <li><a href="{{ path('fos_user_resetting_request')}}">
+                	{{ 'resetting.request.title'|trans({}, 'EvalforGescompevalBundle') }}</a></li>
+              </ul>
+            </li>
+            {% endif %}
+            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+            <li id="li_competencetypes" class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              	{{ 'competencetype.competencetype'|trans({}, 'EvalforGescompevalBundle') }}<b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="{{ path('EGB_list_competencetype')}}">
+                	{{ 'skill.read.title'|trans({}, 'EvalforGescompevalBundle') }}</a></li>
+                <li><a href="{{ path('EGB_create_competencetype')}}">
+                	{{ 'skill.create.title'|trans({}, 'EvalforGescompevalBundle') }}</a></li>
+                <li><a href="{{ path('EGB_update_competencetype')}}">
+                	{{ 'skill.update.title'|trans({}, 'EvalforGescompevalBundle') }}</a></li>
+                <li><a href="{{ path('EGB_delete_competencetype')}}">
+                	{{ 'skill.delete.title'|trans({}, 'EvalforGescompevalBundle') }}</a></li>
+              </ul>
+            </li>
+            <li id="li_institutions" class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              	{{ 'institution.institution'|trans({}, 'EvalforGescompevalBundle') }}<b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="{{ path('EGB_list_institution')}}">
+                	{{ 'skill.read.title'|trans({}, 'EvalforGescompevalBundle') }}</a></li>
+                <li><a href="{{ path('EGB_create_institution')}}">
+                	{{ 'homepage.create.title'|trans({}, 'EvalforGescompevalBundle') }}</a></li>
+                <li><a href="{{ path('EGB_update_institution')}}">
+                	{{ 'homepage.update.title'|trans({}, 'EvalforGescompevalBundle') }}</a></li>
+                <li><a href="{{ path('EGB_delete_institution')}}">
+                	{{ 'homepage.delete.title'|trans({}, 'EvalforGescompevalBundle') }}</a></li>
+              </ul>
+            </li>
+            {% endif %}
+            <li id="li_help"><a href="{{ path('EGB_help')}}">
+            	{{ 'help.title'|trans({}, 'EvalforGescompevalBundle') }}</a></li>
+
+		  	{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                {# 'layout.logged_in_as'|trans({'%username%': app.user.username},
+                	'FOSUserBundle') #}
+                <li id="li_my_profile"><a href="{{ path('fos_user_profile_show') }}">
+                	{{ 'profile.title'|trans({}, 'EvalforGescompevalBundle') }}</a></li>
+                <li><a href="{{ path('fos_user_security_logout') }}">
+                    {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}</a></li>
+            {% else %}
+				<form action="{{ path("fos_user_security_check") }}" method="post"
+					  class="navbar-form navbar-right">
+					<input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+		            <div class="form-group">
+		            	<input id="username" type="text" name="_username"
+		            		placeholder="{{ 'security.login.username'|trans({}, 'FOSUserBundle') }}"
+		              		   class="form-control" required="required">
+		            </div>
+		            <div class="form-group">
+		                <input id="password" type="password" name="_password"
+		                	placeholder="{{ 'security.login.password'|trans({}, 'FOSUserBundle') }}"
+		                	class="form-control" required="required">
+		            </div>
+		            <button type="submit" class="btn btn-success">
+		            		{{ 'security.login.submit'|trans({}, 'FOSUserBundle') }}</button>
+		        </form>
+	        {% endif %}
+			</ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+
+	<div class="container theme-showcase">
+
+	    <!-- Main jumbotron for a primary marketing message or call to action -->
+	    <div class="jumbotron" align="center">
+	    	<img src="{{ asset('bundles/evalforgescompeval/images/logo3.png') }}" border=0
+	    		 alt="Logo Gescompeval" />
+	    </div>
+
+		<div id="contenido">
+
+		<!-- Show notice messages -->
+		{% for flashMessage in app.session.flashbag.get('notice') %}
+		    <div class="alert alert-success">
+				{{ flashMessage }}
+		    </div>
+		{% endfor %}
+		<!-- Show error messages -->
+		{% for flashMessage in app.session.flashbag.get('error') %}
+		    <div class="alert alert-danger">
+				{{ flashMessage }}
+		    </div>
+		{% endfor %}
+
+		{% block contenido %}
+
+		{% endblock %}
+		</div>
+
+		<div class="well" align="center">
+			<p>{{ 'footer.research_group'|trans({}, 'EvalforGescompevalBundle') }}
+			<img src="{{ asset('bundles/evalforgescompeval/images/evalfor.gif') }}"
+			 	 border=0 alt="Logo Evalfor" /></p>
+	    	<p>{{ 'footer.university'|trans({}, 'EvalforGescompevalBundle') }}</p>
+		</div>
+	</div> <!-- /container -->
+
+
+	<script type="text/javascript">
+		// It focus the menu option belonging to the active page
+		{% if active_page is defined %}
+			{% if active_page == "index" %}
+				document.getElementById('li_homepage').className="active";
+			{% elseif active_page == c_competence %}
+				document.getElementById('li_competencies').className="active";
+			{% elseif active_page == c_result %}
+				document.getElementById('li_results').className="active";
+			{% elseif active_page == "users" %}
+				document.getElementById('li_users').className="active";
+			{% elseif active_page == "competencetype" %}
+				document.getElementById('li_competencetypes').className="active";
+			{% elseif active_page == "institution" %}
+				document.getElementById('li_institutions').className="active";
+			{% elseif active_page == "help" %}
+				document.getElementById('li_help').className="active";
+			{% elseif active_page == "my_profile" %}
+				document.getElementById('li_my_profile').className="active";
+			{% endif %}
+		{% endif %}
+
+	 	// It activates selectpicker
+	    $(document).ready(function(e) {
+	    	$('.selectpicker').selectpicker();
+	    });
+
+	 	// Disabled default option in selects
+	    $("#select_skills option[value=0]").attr('disabled',true).siblings().removeAttr('disabled');
+	    $("#select_competencetypes option[value=0]").attr('disabled',true).siblings().removeAttr('disabled');
+	    $("#select_institutions option[value=0]").attr('disabled',true).siblings().removeAttr('disabled');
+
+	 	// Set special chars in selectboxes
+		$("#select_institutions > option").each(function() {
+			if(this.value != "0"){
+				this.title = htmlspecialchars(this.title);
+			}
+		});
+
+		$("#select_skills > option").each(function() {
+			if(this.value != "0"){
+				this.title = htmlspecialchars(this.title);
+			}
+		});
+
+		$("#select_competencetypes > option").each(function() {
+			if(this.value != "0"){
+				this.title = htmlspecialchars(this.title);
+			}
+		});
+
+		function htmlspecialchars(string){
+	  	  	return $('<span>').text(string).html();
+	  	}
+
+		function decodechars(str) {
+	        return $("<div/>").html(str).text();
+	    }
+	</script>
+{% endblock %} {# endblock body #}
+

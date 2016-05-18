@@ -1,0 +1,63 @@
+{% extends 'EvalforGescompevalBundle::layout.html.twig' %}
+
+{% block title %}
+{% endblock %}
+
+{% block contenido %}
+
+	{% block ajax %}
+	{% endblock %}
+
+	<div class="panel panel-default">
+		<div class="panel-heading">
+	    	<h3 class="panel-title">
+			{% block skill_title %}
+			{% endblock %}
+	    	</h3>
+	    	</div>
+	   	<div class="panel-body">
+		    	{% block form_tag %}
+				{% endblock %}
+
+				<div class="row-fluid">
+			   		<select id="select_skills" class="selectpicker" data-style="btn-primary"
+		    				data-live-search="true" data-width="100%" onChange="loadContents(this.value)">
+		    			{% block option0 %}
+						{% endblock %}
+					    {% for skill in skills_all %}
+				    		<optgroup label="{{ skill.code }}">
+								<option style="white-space: pre-line;"
+										value="{{ skill.id }}" title="{{ skill.code }}">
+									{{ skill.shortdescription }}</option>
+							</optgroup>
+				    	{% endfor %}
+					</select>
+				</div>
+			    <div class="form-group">
+					{{ form_row(form.code) }}
+				</div>
+				<div class="form-group">
+					{{ form_row(form.shortdescription) }}
+				</div>
+				<div class="form-group">
+					{{ form_row(form.longdescription) }}
+				</div>
+				<div class="form-group">
+					<div class="row-fluid">
+						{{ form_label(form.institution) }}
+						<br />
+						{{ form_errors(form.institution) }}
+						{{ form_widget(form.institution) }}
+					</div>
+				</div>
+				{% block competencetype %}
+				{% endblock %}
+				{{ form_row(form.id) }}
+				{{ form_row(form._token) }}
+				<button type="submit" class="btn btn-default">
+			    	{{ 'skill.update.title'|trans({}, 'EvalforGescompevalBundle') }}
+			    </button>
+			</form>
+		</div>
+	</div>
+{% endblock %}

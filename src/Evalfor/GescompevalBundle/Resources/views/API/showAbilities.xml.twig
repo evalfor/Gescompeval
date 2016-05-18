@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<se:abilities xmlns:se="showAbilities"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="showAbilities.xsd">
+	{% if elements != false %}
+	{% for element in elements %}
+	<ability>
+		{% if element != false %}
+		<id>{{ element.id }}</id>
+		<code>{{ element.code }}</code>
+		<description>{{ element.description }}</description>
+		<type>{{ element.type }}</type>
+		{% endif %}
+	</ability>
+	{% endfor %}
+	{% endif %}
+</se:abilities>

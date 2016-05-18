@@ -1,0 +1,227 @@
+# Homepage
+homepage:
+    title: Inicio
+    content: Gescompeval es un servicio Web para facilitar la gestión de competencias y resultados de aprendizaje. Desarrollado para el grupo de investigación EvalFOR. Esta aplicación es una parte del Proyecto Fin de Carrera del autor, realizado para la titulación de Ingeniería Informática. 
+    create:
+        title: Crear
+    update:
+        title: Actualizar
+    delete:
+        title: Eliminar    
+# Institution
+institution:
+  ## Code added by Daniel Cabeza
+  ## START
+    list: Lista de Instituciones
+    institutions: instituciones
+    confirm: ¿Cónfirma que desea eliminar la Institución? Si lo hace NO se eliminarán las competencias y resultados asociados
+  ## END
+    institution: Institución
+    university: Universidad
+    campus: Campus
+    create:
+        title: Crear Institución
+    update:
+        title: Actualizar Institución
+    delete:
+        title: Eliminar Institución
+    flash:
+        created: Institución creada correctamente
+        updated: Institución modificada correctamente
+        deleted: Institución eliminada correctamente
+        error: La operación no ha podido realizarse
+        usedname: El nombre de institución introducido ya ha sido registrado anteriormente
+        
+# CompetenceType
+competencetype:
+  ## Code added by Daniel Cabeza
+  ## START
+    list: Listado de Tipos de competencia
+    competencetypes: Tipos de competencias
+    confirm: ¿Confirma que desea aliminar el Tipo de Competencia? Si lo hace NO se eliminarán las competencias asociadas
+  ## END
+    competencetype: Tipo de competencia
+    create:
+        title: Crear Tipo de competencia
+    update:
+        title: Actualizar Tipo de competencia
+    delete:
+        title: Eliminar Tipo de competencia
+    flash:
+        created: Tipo de competencia creado correctamente
+        updated: Tipo de competencia modificado correctamente
+        deleted: Tipo de competencia eliminado correctamente
+        error: La operación no ha podido realizarse
+        usedtype: El tipo de competencia introducido ya ha sido registrado anteriormente
+
+# Competency
+competency:
+
+   ## Code added by Daniel Cabeza
+   ## START
+    list: Listado de competencias
+    read:
+        title: Consultar competencias
+    confirm: ¿Confirma que desea eliminar la competencia?
+    upload: 
+        title: Subir competencias
+        previewupload: Previsualizar subida de competencias
+        help: Desde este apartado podrá subir múltiples competencias mediante un fichero en formato CSV (comma-separated values).El fichero .CSV debe cumplir las siguientes reglas
+        instruction1: Asegúrese de que el fichero esté codificado en UTF-8 o ISO-8859-15.
+        instruction2: La primera línea contendrá la cabecera de la siguiente forma: code, shortdescription, longdescription, competencetype, institution.
+        instruction3: Todos los campos anteriores deberán aparecer en la cabecera
+        instruction4: Los valores obligatorios de las líneas del fichero son los correspondientes a: code y shortdescription.
+        instruction5: Los valores opcionales son: longdescription, competencetype, institution
+        instruction6: Si una linea del fichero tiene establecido el valor para 'competencetype', este deberá corresponderse con algún valor del campo 'type' de algún 'Tipo de Competencia' existente en el sistema.
+        instruction7: Si una linea del fichero tiene establecido el campo 'institution', este deberá corresponderse con algún valor del campo 'name' de alguna'Institución' existente en el sistema.
+        created: Elementos creados
+        choiceCompetenceType: Si un valor del campo/columna 'competencetype' NO existe en el sistema:
+        choiceCreateCompetenceType: Crearlo automáticamente
+        choiceNothingCompetenceType: No hacer nada
+   ## END
+   
+    create:
+        title: Crear competencia
+    update:
+        title: Actualizar competencia
+    delete:
+        title: Eliminar competencia
+    select: Seleccionar competencia
+
+# Outcome
+outcome:
+
+   ## Code added by Daniel Cabeza
+   ## START
+    list: Listado de resultados de aprendizaje
+    read:
+        title: Consultar resultado de aprendizaje
+    confirm: ¿Confirma que desea eliminar el resultado de aprendizaje?
+   ## END
+   
+    create:
+        title: Crear resultado de aprendizaje
+    update:
+        title: Actualizar resultado de aprendizaje
+    delete:
+        title: Eliminar resultado de aprendizaje
+    select: Seleccionar resultado de aprendizaje
+    upload: 
+        title: Subir resultados de aprendizaje
+        previewupload: Previsualizar subida de resultados de aprendizaje
+        help: Desde este apartado podrá subir múltiples resultados de aprendizaje mediante un fichero en formato CSV (comma-separated values).El fichero .CSV debe cumplir las siguientes reglas
+        instruction1: Asegúrese de que el fichero esté codificado en UTF-8 o ISO-8859-15.
+        instruction2: La primera línea contendrá la cabecera de la siguiente forma:code, shortdescription, longdescription, institution.
+        instruction3: Todos los campos anteriores deberán aparecer en la cabecera
+        instruction4: Los valores obligatorios de las líneas del fichero son los correspondientes a: code y shortdescription.
+        instruction5: Los valores opcionales son: longdescription, institution
+        instruction6: Si una linea del fichero tiene establecido el campo 'institution', este deberá corresponderse con algún valor del campo 'name' de alguna'Institución' existente en el sistema.
+        created: Resultados de aprendizaje creados
+# Skill
+skill:
+    competency: Competencia
+    competencies: Competencias
+    learning_outcome: Resultado de aprendizaje
+    learning_outcomes: Resultados de aprendizaje
+    outcome: Resultado
+    
+   ## Code added by Daniel Cabeza
+   ## START
+    search: Buscar
+    read:
+        title: Consultar
+        return: Volver
+    upload: Subida masiva
+    file: Fichero
+    return: Volver
+    continue: Continuar
+    correction: Por favor, corrija los siguientes errores antes de continuar. Si continúa, las siguientes líneas no se guardarán
+    delimiter: Delimitador
+    errors: Errores
+    description: Descripción
+    outcomes: Resultados de aprendizaje
+   ## END
+   
+    create:
+        title: Crear
+    update:
+        title: Actualizar 
+    delete:
+        title: Eliminar
+    connect:
+        title: Relacionar        
+        outcomes_not_selected: Resultados de aprendizaje no relacionados
+        outcomes_selected: Resultados de aprendizaje sí relacionados
+        competencies_not_selected: Competencias no relacionadas
+        competencies_selected: Competencias sí relacionadas
+        submit: Confirmar relación
+    flash:
+        created: La creación se ha realizado correctamente
+        updated: La modificación se ha realizado correctamente
+        deleted: La eliminación se ha realizado correctamente
+        connected: La relación se ha realizado correctamente
+        error: La operación no ha podido realizarse
+        usedcode: El código introducido ya ha sido registrado anteriormente
+        csvinvaliddatatype: Cabecera del fichero no válida o el  carácter delimitador seleccionado no se corresponde con el del fichero
+        filetoobig: El tamaño de fichero excede al soportado por el servidor.
+        csvnovalidlines: No se han encontrado líneas válidas en el fichero
+    ## Code added by Daniel Cabeza
+    ## START
+        empty: La búsqueda no ha producido resultados  
+    ##END
+#Users 
+registration:
+    title: Registrar usuario
+    
+resetting:
+    request:
+        title: Reestablecer contraseña
+profile:
+    title: Mi perfil
+
+#Help
+help:
+    title: Ayuda
+    manual: "Manual:"
+    manual_not_yet: Manual no disponible aún
+    author: "Autor:"
+    email: "Email:"
+
+# Global strings
+users: Usuarios
+select: Seleccionar
+footer:
+    research_group: Grupo de investigación Evalfor
+    university: Universidad de Cádiz
+
+# Form field labels
+form:
+    code: Código(*)
+    shortdescription: Descripción corta(*)
+    longdescription: Descripción larga
+    description: Descripción
+    name: Nombre(*)
+    type: Tipo(*)
+    institution: Institución asociada
+    noinstitution: Sin institución asociada
+    associatedtype: Tipo asociado
+    noassociatedtype: Sin tipo asociado
+ 
+## Code added by Daniel Cabeza
+## START
+list:
+    code: Código
+    shortdescription: Descripción corta
+    longdescription: Descripción larga
+    operation: Operación
+    edit: Editar
+    type: Tipo
+    description: Descripción
+    name: Nombre
+## END
+      
+#Error pages
+error:
+    ocurred: Oops! Ha ocurrido un error
+    server: El servidor devolvió
+    text: Quizás algo no funciona. Si piensa que esta página debería mostrar otro contenido, por favor mándenos un correo a [evalfor@uca.es] y háganos saber lo que usted estaba haciendo cuando ocurrió este error. Lo arreglaremos tan pronto como sea posible. Sentimos cualquier incoveniente que esto pueda causarle.

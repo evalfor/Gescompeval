@@ -1,0 +1,269 @@
+EGB_homepage:
+    pattern:  /{lang}
+    defaults: { _controller: EvalforGescompevalBundle:Default:index, lang: "" }
+    requirements:
+        lang:  en|es|""
+    
+EGB_help:
+    pattern:  /help
+    defaults: { _controller: EvalforGescompevalBundle:Default:help }
+
+# Institution routing
+   ## Code added by Daniel Cabeza
+   ## START  
+EGB_list_institution:
+    pattern:  /list/institution/{page}
+    defaults: { _controller: EvalforGescompevalBundle:Institution:list, page: 1 }
+    requirements:
+        page:  \d+
+
+EGB_delete_institution_id:
+    pattern:  /delete/institution/{id}
+    defaults: { _controller: EvalforGescompevalBundle:Institution:deleteid }
+    
+EGB_update_institution_id:
+    pattern:  /update/institution/{id}
+    defaults: { _controller: EvalforGescompevalBundle:Institution:updateid }
+   ## Code added by Daniel Cabeza
+   ## END
+   
+EGB_create_institution:
+    pattern:  /create/institution
+    defaults: { _controller: EvalforGescompevalBundle:Institution:create }
+    
+EGB_update_institution:
+    pattern:  /update/institution
+    defaults: { _controller: EvalforGescompevalBundle:Institution:update }
+    
+EGB_delete_institution:
+    pattern:  /delete/institution
+    defaults: { _controller: EvalforGescompevalBundle:Institution:delete }
+    
+# CompetenceType routing
+   
+   ## Code added by Daniel Cabeza
+   ## START  
+EGB_list_competencetype:
+    pattern:  /list/competencetype/{page}
+    defaults: { _controller: EvalforGescompevalBundle:CompetenceType:list, page: 1 }
+    requirements:
+        page:  \d+
+        
+EGB_delete_competencetype_id:
+    pattern:  /delete/competencetype/{id}
+    defaults: { _controller: EvalforGescompevalBundle:CompetenceType:deleteid }
+    
+EGB_update_competencetype_id:
+    pattern:  /update/competencetype/{id}
+    defaults: { _controller: EvalforGescompevalBundle:CompetenceType:updateid }
+   ## Code added by Daniel Cabeza
+   ## END
+   
+EGB_create_competencetype:
+    pattern:  /create/competencetype
+    defaults: { _controller: EvalforGescompevalBundle:CompetenceType:create }
+
+EGB_update_competencetype:
+    pattern:  /update/competencetype
+    defaults: { _controller: EvalforGescompevalBundle:CompetenceType:update }
+    
+EGB_delete_competencetype:
+    pattern:  /delete/competencetype
+    defaults: { _controller: EvalforGescompevalBundle:CompetenceType:delete }
+
+# Competency routing
+
+   ## Code added by Daniel Cabeza
+   ## START  
+EGB_list_competency:
+    pattern:  /list/competency/{page}
+    defaults: { _controller: EvalforGescompevalBundle:Competency:list, page: 1 }
+    requirements:
+        page:  \d+
+
+EGB_read_competency:
+    pattern:  /read/competency/{id}
+    defaults: { _controller: EvalforGescompevalBundle:Competency:read }
+   
+EGB_upload_competency:
+    pattern:  /upload/competency
+    defaults: { _controller: EvalforGescompevalBundle:Competency:upload }
+    
+EGB_delete_competency_id:
+    pattern:  /delete/competency/{id}
+    defaults: { _controller: EvalforGescompevalBundle:Competency:deleteid }
+    
+EGB_update_competency_id:
+    pattern:  /update/competency/{id}
+    defaults: { _controller: EvalforGescompevalBundle:Competency:updateid }
+   ## Code added by Daniel Cabeza
+   ## END
+    
+EGB_create_competency:
+    pattern:  /create/competency
+    defaults: { _controller: EvalforGescompevalBundle:Competency:create }
+        
+EGB_update_competency:
+    pattern:  /update/competency
+    defaults: { _controller: EvalforGescompevalBundle:Competency:update }
+        
+EGB_delete_competency:
+    pattern:  /delete/competency
+    defaults: { _controller: EvalforGescompevalBundle:Competency:delete }
+
+# Outcome routing  
+
+   ## Code added by Daniel Cabeza
+   ## START
+EGB_list_outcome:
+    pattern:  /list/outcome/{page}
+    defaults: { _controller: EvalforGescompevalBundle:Outcome:list, page: 1 }
+    requirements:
+        page:  \d+
+
+EGB_read_outcome:
+    pattern:  /read/outcome/{id}
+    defaults: { _controller: EvalforGescompevalBundle:Outcome:read }
+
+EGB_upload_outcome:
+    pattern:  /upload/outcome
+    defaults: { _controller: EvalforGescompevalBundle:Outcome:upload }
+
+EGB_delete_outcome_id:
+    pattern:  /delete/outcome/{id}
+    defaults: { _controller: EvalforGescompevalBundle:Outcome:deleteid }
+    
+EGB_update_outcome_id:
+    pattern:  /update/outcome/{id}
+    defaults: { _controller: EvalforGescompevalBundle:Outcome:updateid }
+   ## Code added by Daniel Cabeza
+   ## END
+  
+EGB_create_outcome:
+    pattern:  /create/outcome
+    defaults: { _controller: EvalforGescompevalBundle:Outcome:create }
+        
+EGB_update_outcome:
+    pattern:  /update/outcome
+    defaults: { _controller: EvalforGescompevalBundle:Outcome:update }
+        
+EGB_delete_outcome:
+    pattern:  /delete/outcome
+    defaults: { _controller: EvalforGescompevalBundle:Outcome:delete }
+
+# Skill routing  
+#EGB_create_skill:
+#    pattern:  /create/{type}
+#    defaults: { _controller: EvalforGescompevalBundle:Skill:create }
+#    requirements:
+#        type:  competency|result
+#        
+#EGB_update_skill:
+#    pattern:  /update/{type}
+#    defaults: { _controller: EvalforGescompevalBundle:Skill:update }
+#    requirements:
+#        type:  competency|result
+#        
+#EGB_delete_skill:
+#    pattern:  /delete/{type}
+#    defaults: { _controller: EvalforGescompevalBundle:Skill:delete }
+#    requirements:
+#        type:  competency|result
+        
+# API routing
+EGB_API_show_competency:
+    pattern:  /api/competencies/{id}.{_format}
+    defaults: { _controller: EvalforGescompevalBundle:API:showCompetency, _format: "xml" }
+    requirements:
+        _format: xml|json
+        method: get
+        id: \d+
+        
+EGB_API_show_competencies:
+    pattern:  /api/competencies.{_format}
+    defaults: { _controller: EvalforGescompevalBundle:API:showCompetencies, _format: "xml" }
+    requirements:
+        _format: xml|json
+        method: get
+        
+EGB_API_show_outcome:
+    pattern:  /api/outcomes/{id}.{_format}
+    defaults: { _controller: EvalforGescompevalBundle:API:showOutcome, _format: "xml" }
+    requirements:
+        _format: xml|json
+        method: get
+        id: \d+
+        
+EGB_API_show_outcomes:
+    pattern:  /api/outcomes.{_format}
+    defaults: { _controller: EvalforGescompevalBundle:API:showOutcomes, _format: "xml" }
+    requirements:
+        _format: xml|json
+        method: get
+
+EGB_API_show_skill:
+    pattern:  /api/skills/{type}/{id}.{_format}
+    defaults: { _controller: EvalforGescompevalBundle:API:showSkill, type: "competency", _format: "xml" }
+    requirements:
+        _format: xml|json
+        type: competency|outcome
+        method: get
+        id: \d+
+        
+EGB_API_show_skills:
+    pattern:  /api/skills.{_format}
+    defaults: { _controller: EvalforGescompevalBundle:API:showSkills, _format: "xml"}
+    requirements:
+        _format: xml|json
+        method: get|post
+
+EGB_API_show_institution_skills:
+    pattern:  /api/institutions/{id}/skills.{_format}
+    defaults: { _controller: EvalforGescompevalBundle:API:showInstitutionSkills, _format: "xml" }
+    requirements:
+        _format: xml|json
+        method: get
+        id: \d+
+
+EGB_API_show_institution:
+    pattern:  /api/institutions/{id}.{_format}
+    defaults: { _controller: EvalforGescompevalBundle:API:showInstitution, _format: "xml" }
+    requirements:
+        _format: xml|json
+        method: get
+        id: \d+
+        
+EGB_API_show_institutions:
+    pattern:  /api/institutions.{_format}
+    defaults: { _controller: EvalforGescompevalBundle:API:showInstitutions, _format: "xml" }
+    requirements:
+        _format: xml|json
+        method: get
+        
+EGB_API_show_competencetype:
+    pattern:  /api/competencetypes/{id}.{_format}
+    defaults: { _controller: EvalforGescompevalBundle:API:showCompetenceType, _format: "xml" }
+    requirements:
+        _format: xml|json
+        method: get
+        id: \d+
+        
+EGB_API_show_competencetypes:
+    pattern:  /api/competencetypes.{_format}
+    defaults: { _controller: EvalforGescompevalBundle:API:showCompetenceTypes, _format: "xml" }
+    requirements:
+        _format: xml|json
+        method: get
+
+EGB_API_show_abilities:
+    pattern:  /api/abilities.{_format}
+    defaults: { _controller: EvalforGescompevalBundle:API:showAbilities, _format: "xml" }
+    requirements:
+        _format: xml
+        method: post
+
+# Users administration routes are defined by annotations in the controller    
+EGBAnnotations:
+    resource: "@EvalforGescompevalBundle/Controller/"
+    prefix:   /
+    type:     annotation

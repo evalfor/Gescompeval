@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+xmlns="showOutcomes"
+targetNamespace="showOutcomes">
+	<xs:element name="outcomes">
+	    <xs:annotation>
+	      <xs:documentation xml:lang="en-EN">All learning outcomes</xs:documentation>
+	    </xs:annotation>
+	    <xs:complexType>
+	      <xs:sequence>
+	        <xs:element name="outcome" minOccurs="0" maxOccurs="unbounded">
+			    <xs:annotation>
+			      <xs:documentation xml:lang="en-EN">One learning outcome</xs:documentation>
+			    </xs:annotation>
+			    <xs:complexType>
+			      <xs:sequence>
+			        <xs:element name="id" minOccurs="0" maxOccurs="1" />
+	        		<xs:element name="code" minOccurs="0" maxOccurs="1" />
+	       			<xs:element name="shortdescription" minOccurs="0" maxOccurs="1" />
+	        		<xs:element name="longdescription" minOccurs="0" maxOccurs="1" />
+	        		<xs:element name="institution_id" minOccurs="0" maxOccurs="1" />
+	        		<xs:element name="institution_name" minOccurs="0" maxOccurs="1" />
+			      </xs:sequence>
+			    </xs:complexType>
+			</xs:element>        
+	      </xs:sequence>
+	    </xs:complexType>
+	</xs:element>
+</xs:schema>

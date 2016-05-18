@@ -1,0 +1,78 @@
+framework:
+    session:
+        cookie_lifetime: 7200 # expire on browser close in 2 hours
+        gc_maxlifetime: 1800 # 1800 = expire after 30 minutes of inactivity
+        gc_probability: 1
+        gc_divisor: 1
+        
+security:
+    encoders:
+        FOS\UserBundle\Model\UserInterface: 
+            algorithm: sha512
+        #Symfony\Component\Security\Core\User\User:
+        #Evalfor\UserBundle\Entity\User:
+            #algorithm: sha512
+            #encode-as-base64: true
+            #iterations: 10
+
+    role_hierarchy:
+        ROLE_ADMIN:           ROLE_USER
+        ROLE_SUPER_ADMIN:     ROLE_ADMIN
+
+    providers:
+        fos_userbundle:
+            id:     fos_user.user_manager
+
+        #in_memory:
+            #memory:
+                #users:
+                    #userpass:  { password: 45f106ef4d5161e7aa38cf6c666607f25748b6ca, roles: [ 'ROLE_USER' ] }
+                    #adminpass: { password: 74913f5cd5f61ec0bcfdb775414c2fb3d161b620, roles: [ 'ROLE_ADMIN' ] }
+        #fos_userbundle:
+            #id:     fos_user.user_manager
+        #chain_provider:
+            #chain:
+                #providers: [in_memory, fos_userbundle]
+
+    firewalls:
+        main:
+            pattern:     ^/
+            form_login:
+                provider:     fos_userbundle
+                #provider:      chain_provider
+                csrf_provider: form.csrf_provider
+            logout:           true
+            anonymous:        true
+            security:         true
+        dev:
+            pattern:  ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        login:
+            pattern:  ^/demo/secured/login$
+            security: false
+
+        secured_area:
+            pattern:    ^/demo/secured/
+            form_login:
+                check_path: _security_check
+                login_path: _demo_login
+            logout:
+                path:   _demo_logout
+                target: _demo
+            #anonymous: ~
+            #http_basic:
+            #    realm: "Secured Demo Area"
+
+    access_control:
+        - { path:     ^/login$, role:     IS_AUTHENTICATED_ANONYMOUSLY }
+        #- { path:     ^/register*, role:     IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path:     ^/register*, role:     ROLE_ADMIN }
+        - { path:     ^/resetting/*, role:     ROLE_ADMIN }
+        - { path:     ^/create/*, role:     ROLE_USER }
+        - { path:     ^/update/*, role:     ROLE_USER }
+        - { path:     ^/delete/*, role:     ROLE_USER }
+        - { path:     ^/connect/*, role:     ROLE_USER }
+        - { path:     ^/admin*, role:     ROLE_ADMIN }
+        - { path: ^/demo/secured/hello/admin/, role: ROLE_ADMIN }
+        #- { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }

@@ -1,0 +1,223 @@
+# Homepage
+homepage:
+    title: Homepage
+    content: Gescompeval is a Web service used to make easier competencies and learning outcomes management. It has been development by Juan Antonio Caballero for EvalFOR researching group. This software is a part of the author's Final Year Project, for Engineering Degree. 
+    create:
+        title: Create
+    update:
+        title: Update
+    delete:
+        title: Delete
+        
+# Institution
+institution:
+  ## Code added by Daniel Cabeza
+  ## START
+    list: List of Institutions
+    institutions: institutions
+    confirm: Are you sure you want to delete the institution? If so, associated competencies and results will not be deleted
+  ## END
+    institution: Institution
+    university: University
+    campus: Campus
+    create:
+        title: Create Institution
+    update:
+        title: Update Institution
+    delete:
+        title: Delete Institution
+    flash:
+        created: Institution created succesfully
+        updated: Institution updated succesfully
+        deleted: Institution deleted succesfully
+        error: Operation not executed
+        usedname: Institution name has already been registered previously
+# CompetenceType
+competencetype:
+  ## Code added by Daniel Cabeza
+  ## START
+    list: List of Competence type
+    competencetypes: Competence types
+    confirm: Are you sure you want to delete the competence type? If so, associated competencies will not be deleted
+  ## END
+    competencetype: Competence type 
+    create:
+        title: Create Competence type
+    update:
+        title: Update Competence type
+    delete:
+        title: Delete Competence type
+    flash:
+        created: Competence type created succesfully
+        updated: Competence type updated succesfully
+        deleted: Competence type deleted succesfully
+        error: Operation not executed
+        usedtype: Competence type has already been registered previously
+
+# Competency
+competency:
+   ## Code added by Daniel Cabeza
+   ## START
+    list: List of competencies
+    read: 
+        title: Read competencies
+    confirm: Are you sure you want to delete the competency?
+    upload: 
+        title: Upload competencies
+        previewupload: Preview uploading competencies
+        help: From this section you can upload multiple competencies through a file in CSV (comma-separated values). The .CSV file must comply with the following rules
+        instruction1: Make sure the file is encoded in UTF-8 or ISO-8859-15.
+        instruction2: The first line contains the header as follows:  code, shortdescription, longdescription, competencetype, institution
+        instruction3: All the above fields should appear in the header
+        instruction4: Required values of the lines in the file are those for: code and shortdescription.
+        instruction5: Optional values are: longdescription, competencetype, institution
+        instruction6: If a line of the file has set the value for 'competencetype', this should correspond to a field value 'type' of any 'type of competence' existing in the system.
+        instruction7:  If a line of the file has established the 'institution' field, this must match some value of the field 'name' of any 'Institución' existing in the system.
+        created: Created items
+        choiceCompetenceType: If a value of the 'competencetype' field/column does not exist in the system:
+        choiceCreateCompetenceType: Create it automatically
+        choiceNothingCompetenceType: Do nothing
+   ## END
+    create:
+        title: Create competency
+    update:
+        title: Update competency
+    delete:
+        title: Delete competency
+    select: Select competency
+
+# Outcome
+outcome:
+   ## Code added by Daniel Cabeza
+   ## START
+    list: List of learning outcomes
+    read:
+        title: Read learning outcome
+    confirm: Are you sure you want to delete the learning outcome?
+   ## END
+    create:
+        title: Create learning outcome
+    update:
+        title: Update learning outcome
+    delete:
+        title: Delete learning outcome
+    select: Select learning outcome
+    upload: 
+        title: Upload learning outcome
+        previewupload: Preview the upload of learning outcome
+        help: From this section you can upload multiple learning outcomes through a file in CSV (comma-separated values) .The .CSV file must meet the following rules
+        instruction1: Make sure the file is encoded in UTF-8 or ISO-8859-15.
+        instruction2: The first line contains the header as follows:code, shortdescription, longdescription, institution.
+        instruction3: All the above fields should appear in the header
+        instruction4: Required values of the lines in the file are those corresponding to code y shortdescription.
+        instruction5: Optional values are: longdescription, institution
+        instruction6: If a line of the file has established the 'institution' field, this must match some value of the field 'name' of any 'institution' existing in the system.
+        created: Learning outcomes created
+# Skill
+skill:
+    competency: Competency
+    competencies: Competencies
+    learning_outcome: Learning outcome
+    learning_outcomes: Learning outcomes
+    result: Outcomes
+    
+   ## Code added by Daniel Cabeza
+   ## START
+    search: Search
+    read:
+        title: List
+        return: Return
+    upload: Bulk upload
+    file: File
+    return: Return
+    continue: Continue
+    correction: Please correct the following errors before proceeding. If you proceed, the follow lines won't be saved
+    delimiter: Delimiter
+    errors: Errors
+    description: Description
+    outcomes: Learning outcomes
+   ## END
+   
+    create:
+        title: Create
+    update:
+        title: Update
+    delete:
+        title: Delete
+    connect:
+        title: Connect        
+        outcomes_not_selected: Learning outcomes not connected
+        outcomes_selected: Learning outcomes yes connected
+        competencies_not_selected: Competencies not connected
+        competencies_selected: Competencies yes connected
+        submit: Confirm connection
+    flash:
+        created: Created succesfully
+        updated: Updated succesfully
+        deleted: Deleted succesfully
+        connected: Connected succesfully
+        error: Operation not executed
+        usedcode: Element code has already been registered previously
+        csvinvaliddatatype: Invalid file header or the selected delimiter character does not correspond to the file
+        filetoobig: The file size exceeds supported by the server.
+        csvnovalidlines: No valid lines found in the file 
+    ## Code added by Daniel Cabeza
+    ## START
+        empty: The search returned no results   
+    ##END
+#Users 
+registration:
+    title: Register user
+    
+resetting:
+    request:
+        title: Resetting password
+profile:
+    title: My profile
+
+#Help
+help:
+    title: Help
+    manual: "Manual:"
+    manual_not_yet: Manual is not available yet
+    author: "Author:"
+    email: "Email:"
+
+# Global strings
+users: Users
+select: Select
+footer:
+    research_group: Evalfor researching group 
+    university: University of Cadiz
+
+# Form field labels
+form:
+    code: Code(*)
+    shortdescription: Short description(*)
+    longdescription: Long description
+    description: Description
+    name: Name(*)
+    type: Type(*)
+    institution: Associated institution
+    noinstitution: Without associated institution
+    associatedtype: Associated type
+    noassociatedtype: Without associated type
+
+## Code added by Daniel Cabeza
+## START
+list:
+    code: Code
+    shortdescription: Short description
+    longdescription: Long description
+    operation: Operation
+    edit: Edit
+    type: Type
+    description: Description
+    name: Name
+## END
+    
+#Error pages
+error:
+    ocurred: Oops! An Error Occurred
+    server: The server returned a
+    text: Maybe something is broken. If you think this page should show other content please e-mail us at [evalfor@uca.es] and let us know what you were doing when this error occurred. We will fix it as soon as possible. Sorry for any inconvenience caused.

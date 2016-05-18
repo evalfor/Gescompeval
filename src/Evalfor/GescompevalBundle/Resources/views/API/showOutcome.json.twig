@@ -1,0 +1,15 @@
+{
+{% if outcome != null %}
+	"id":"{{ outcome.id }}",
+	"code":"{{ outcome.code }}",
+	"shortdescription":"{{ outcome.shortdescription }}",
+	"longdescription":"{{ outcome.longdescription }}",
+	{%  if outcome.institution != null %}
+		"institution_id":"{{ outcome.institution.getId() }}",
+		"institution_name":"{{ outcome.institution.getName() }}",
+	{% else %}
+		"institution_id":"",
+		"institution_name":"",
+	{% endif %}
+{% endif %}
+}

@@ -1,0 +1,41 @@
+{% extends 'EvalforGescompevalBundle:Skill:parentupload.html.twig' %}
+
+{% block title %}
+{% endblock %}
+
+
+{% block ajax %}
+{% endblock %}
+
+
+{% block skill_title %}
+	{{ 'competency.upload.title'|trans({}, 'EvalforGescompevalBundle') }}
+{% endblock %}
+
+{% block form_tag %}
+	<form action="{{ path('EGB_upload_competency') }}" method="post" enctype="multipart/form-data" role="form" class="form-horizontal">
+{% endblock %}
+
+{% block competencetype %}
+	<div class="form-group">
+		<div>
+			{{ form_label(form.competencetype) }}
+		</div>
+		{{ form_widget(form.competencetype) }}				      		
+	</div>
+{% endblock %}
+
+
+{% block instructions %}
+{{ 'competency.upload.help'|trans({}, 'EvalforGescompevalBundle') }}:
+<ul>
+	<li>{{ 'competency.upload.instruction1'|trans({}, 'EvalforGescompevalBundle') }}</li>
+	<li>{{ 'competency.upload.instruction2'|trans({}, 'EvalforGescompevalBundle') }}</li>
+	<li>{{ 'competency.upload.instruction3'|trans({}, 'EvalforGescompevalBundle') }}</li>
+	<li>{{ 'competency.upload.instruction4'|trans({}, 'EvalforGescompevalBundle') }}</li>
+	<li>{{ 'competency.upload.instruction5'|trans({}, 'EvalforGescompevalBundle') }}</li>
+	<li>{{ 'competency.upload.instruction6'|trans({}, 'EvalforGescompevalBundle') }}</li> 
+	<li>{{ 'competency.upload.instruction7'|trans({}, 'EvalforGescompevalBundle') }}</li>
+</ul>	
+{% endblock %}
+ 

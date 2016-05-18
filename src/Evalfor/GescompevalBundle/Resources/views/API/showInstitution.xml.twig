@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<sc:institution xmlns:sc="showInstitution"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="showInstitution.xsd">
+	{%  if institution != false %}
+	<id>{{ institution.id }}</id>
+	<name>{{ institution.name }}</name>
+	<description>{{ institution.description }}</description>
+	{%  endif %}
+</sc:institution>

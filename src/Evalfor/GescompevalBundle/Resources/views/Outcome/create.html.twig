@@ -1,0 +1,13 @@
+{% extends 'EvalforGescompevalBundle:Skill:parentcreate.html.twig' %}
+
+{% block title %}
+	Gescompeval - {{ 'outcome.create.title'|trans({}, 'EvalforGescompevalBundle') }}
+{% endblock %}
+
+{% block skill_title %}
+	{{ 'outcome.create.title'|trans({}, 'EvalforGescompevalBundle') }}
+{% endblock %}
+
+{% block form_tag %}
+	<form action="{{ path('EGB_create_outcome') }}" method="post" role="form">
+{% endblock %}

@@ -1,0 +1,20 @@
+Evalfor\GescompevalBundle\Entity\CompetenceType:
+    properties:
+        type:
+            - NotBlank: ~
+Evalfor\GescompevalBundle\Entity\Institution:
+    properties:
+        name:
+            - NotBlank: ~
+Evalfor\GescompevalBundle\Entity\Outcome:
+    properties:
+        code:
+            - NotBlank: ~
+        shortdescription:
+            - NotBlank: ~
+Evalfor\GescompevalBundle\Entity\Competency:
+    properties:
+        code:
+            - NotBlank: ~
+        shortdescription:
+            - NotBlank: ~

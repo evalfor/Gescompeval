@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<sr:outcome xmlns:sr="showOutcome"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="showOutcome.xsd">
+	{%  if outcome != null %}
+		<id>{{ outcome.id }}</id>
+		<code>{{ outcome.code }}</code>
+		<shortdescription>{{ outcome.shortdescription }}</shortdescription>
+		<longdescription>{{ outcome.longdescription }}</longdescription>
+		{%  if outcome.institution != null %}
+			<institution_id>{{ outcome.institution.getId() }}</institution_id>
+			<institution_name>{{ outcome.institution.getName() }}</institution_name>
+		{%  else %}
+			<institution_id/>
+			<institution_name/>
+		{%  endif %}
+	{%  endif %}
+</sr:outcome>

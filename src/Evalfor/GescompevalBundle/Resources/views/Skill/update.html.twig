@@ -1,0 +1,93 @@
+{% extends 'EvalforGescompevalBundle::layout.html.twig' %}
+
+{# type must be defined #}
+{% if type is defined %}
+
+{% block title %}
+	Gescompeval - {{ 'skill.update.title'|trans({}, 'EvalforGescompevalBundle') }}
+				  {{ type_trans|trans({}, 'EvalforGescompevalBundle') }}
+{% endblock %}
+
+{% block contenido %}
+
+	<!-- Functions that use ajax -->
+	<script type="text/javascript">
+
+	    function processResponse() {
+	    	// Obtain server's response and tranform text string into a json object
+	        var respuesta_json = this.req.responseText;
+	        var objeto_json = eval("("+respuesta_json+")");
+
+	        // Fill the fields of the form
+	        $('#SkillForm_id').val(objeto_json.id);
+			$('#SkillForm_code').val(objeto_json.code);
+			$('#SkillForm_shortdescription').val(objeto_json.shortdescription);
+			$('#SkillForm_longdescription').val(objeto_json.longdescription);
+			$('#SkillForm_institution').val(objeto_json.institution_id);
+			$('.selectpicker').selectpicker('refresh');
+	    }
+
+	    function loadContents(skill_id) {
+	        if (skill_id != 0){
+	        	// Obtain server's name, api's URI and add the identificator request
+		        var uri = "{{ server_host_Twig }}{{ path('EGB_API_show_skill', {'id': 0}) }}";
+		        uri = uri.replace('0', skill_id);
+	    		var cargador = new net.CargadorContenidos(uri+".json", processResponse);
+	        }
+	    }
+
+	</script>
+
+	<div class="panel panel-default">
+		<div class="panel-heading">
+	    	<h3 class="panel-title">
+	    		{{ 'skill.update.title'|trans({}, 'EvalforGescompevalBundle') }}
+	    		{{ type_trans|trans({}, 'EvalforGescompevalBundle') }}
+	    	</h3>
+	    </div>
+	   	<div class="panel-body">
+	    	<form id="id_form" action="{{  path('EGB_update_skill', {'type': type}) }}"
+	    		  method="post" role="form">
+		    	<div class="row-fluid">
+			   		<select id="select_skills" class="selectpicker" data-style="btn-primary"
+		    				data-live-search="true" data-width="100%" onChange="loadContents(this.value)">
+		    			<option value="0">
+							{{ 'select'|trans({}, 'EvalforGescompevalBundle') }}
+							{{ type_trans|trans({}, 'EvalforGescompevalBundle') }}
+		    			</option>
+					    {% for skill in skills_all %}
+				    		<optgroup label="{{ skill.code }}">
+								<option style="white-space: pre-line;"
+										value="{{ skill.id }}" title="{{ skill.code }}">
+									{{ skill.shortdescription }}</option>
+							</optgroup>
+				    	{% endfor %}
+					</select>
+				</div>
+			    <div class="form-group">
+					{{ form_row(form.code) }}
+				</div>
+				<div class="form-group">
+					{{ form_row(form.shortdescription) }}
+				</div>
+				<div class="form-group">
+					{{ form_row(form.longdescription) }}
+				</div>
+				<div class="form-group">
+					<div class="row-fluid">
+						{{ form_label(form.institution) }}
+						<br />
+						{{ form_errors(form.institution) }}
+						{{ form_widget(form.institution) }}
+					</div>
+				</div>
+				{{ form_row(form.id) }}
+				{{ form_row(form._token) }}
+			    <button type="submit" class="btn btn-default">
+			    	{{ 'skill.update.title'|trans({}, 'EvalforGescompevalBundle') }}
+			    </button>
+			</form>
+		</div>
+	</div>
+{% endblock %}
+{% endif %}{#% if type is defined %#}

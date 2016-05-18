@@ -1,0 +1,22 @@
+{
+{% if competency != null %}
+	"id":"{{ competency.id }}",
+	"code":"{{ competency.code }}",
+	"shortdescription":"{{ competency.shortdescription }}",
+	"longdescription":"{{ competency.longdescription }}",
+	{%  if competency.institution != null %}
+		"institution_id":"{{ competency.institution.getId() }}",
+		"institution_name":"{{ competency.institution.getName()}}",
+	{% else %}
+		"institution_id":"",
+		"institution_name":"",
+	{% endif %}
+	{%  if competency.competencetype != null %}
+		"competencetype_id":"{{ competency.competencetype.getId() }}",
+		"competencetype_type":"{{ competency.competencetype.getType() }}",
+	{% else %}
+		"competencetype_id":"",
+		"competencetype_type":"",
+	{% endif %}
+{% endif %}
+}
